@@ -5,7 +5,7 @@
 module.exports = {
   // MongoDB connection options
   mongo: {
-    uri: 'mongodb://eblairmorris:purpscurp@ds041190.mongolab.com:41190/mongomain'
+    uri: 'mongodb://localhost/ihelp-dev'
   },
 
   seedDB: true
