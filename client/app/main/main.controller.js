@@ -1,8 +1,19 @@
 'use strict';
 
 angular.module('ihelpApp')
-  .controller('MainCtrl', function ($scope, $http, socket) {
+  .controller('MainCtrl', function ($scope, $http, socket, Question) {
     $scope.awesomeThings = [];
+    $scope.questions = [];
+    $scope.question = new Question();
+    $scope.questions = Question.query();
+    socket.syncUpdates('question', $scope.questions);
+
+    $scope.submitQuestion = function(){
+      $scope.question.$save({}, function(success){
+        console.log(success);
+      });
+      $scope.question = new Question();
+    };
 
     $http.get('/api/things').success(function(awesomeThings) {
       $scope.awesomeThings = awesomeThings;
@@ -23,5 +34,6 @@ angular.module('ihelpApp')
 
     $scope.$on('$destroy', function () {
       socket.unsyncUpdates('thing');
+      socket.unsyncUpdates('question');
     });
   });

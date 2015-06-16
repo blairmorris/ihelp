@@ -2,13 +2,23 @@
 
 <header class="hero-unit" id="banner">
   <div class="container">
-    <h1>Shut up, Ryan.</h1>
+    <h1>How do I...</h1>
     <p class="lead">I'm working on it.</p>
-    <img src="assets/images/yeoman.png" alt="I'm Yeoman">
+    <textarea class="form-control" placeholder="Your question..." ng-model="question.text"></textarea>
+    <button type="button" class="btn btn-default" ng-click="submitQuestion(question)">Ask it!</button>
+    <!--<img src="assets/images/yeoman.png" alt="I'm Yeoman">-->
   </div>
 </header>
 
 <div class="container">
+  <div class="row">
+    <div class="col-lg-12">
+      <h1 class="page-header">Questions:</h1>
+      <div ng-repeat="question in questions">
+        <pre>{{question.text | json}}</pre>
+      </div>
+    </div>
+  </div>
   <div class="row">
     <div class="col-lg-12">
       <h1 class="page-header">Stuff:</h1>
@@ -17,7 +27,6 @@
       </ul>
     </div>
   </div>
-
   <form class="thing-form">
     <label>Look at these badass web sockets.</label>
     <p class="input-group">
@@ -31,8 +40,8 @@
 
 <footer class="footer">
   <div class="container">
-      <p>Angular Fullstack v2.0.13 |
-        <a href="https://twitter.com/tyhenkel">@tyhenkel</a> |
-         <a href="https://github.com/DaftMonk/generator-angular-fullstack/issues?state=open">Issues</a></p>
+    <p>Angular Fullstack v2.0.13 |
+      <a href="https://twitter.com/tyhenkel">@tyhenkel</a> |
+      <a href="https://github.com/DaftMonk/generator-angular-fullstack/issues?state=open">Issues</a></p>
   </div>
 </footer>
