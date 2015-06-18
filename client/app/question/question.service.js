@@ -8,7 +8,7 @@ angular.module('ihelpApp')
     //var meaningOfLife = 42;
 
     // Public API here
-    return $resource('/api/questions');
+    return $resource('/api/questions/:id', {id:'@_id'});
 
     //return {
     //  someMethod: function () {

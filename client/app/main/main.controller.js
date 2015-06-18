@@ -1,12 +1,16 @@
 'use strict';
 
 angular.module('ihelpApp')
-  .controller('MainCtrl', function ($scope, $http, socket, Question) {
+  .controller('MainCtrl', function ($scope, $http, socket, Question, Auth) {
     $scope.awesomeThings = [];
     $scope.questions = [];
     $scope.question = new Question();
     $scope.questions = Question.query();
     socket.syncUpdates('question', $scope.questions);
+
+    $scope.isLoggedIn = Auth.isLoggedIn;
+    $scope.isAdmin = Auth.isAdmin;
+    $scope.getCurrentUser = Auth.getCurrentUser;
 
     $scope.submitQuestion = function(){
       $scope.question.$save({}, function(success){
