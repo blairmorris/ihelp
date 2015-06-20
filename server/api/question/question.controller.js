@@ -24,6 +24,14 @@ exports.show = function(req, res) {
 exports.create = function(req, res) {
   Question.create(req.body, function(err, question) {
     if(err) { return handleError(res, err); }
+    var postmark = require('postmark');
+    var client = new postmark.Client("02dc2b41-539a-440b-8e76-fa6ec4fd2c16");
+    client.sendEmail({
+      "From": "edward@blairmorris.com",
+      "To": question.email,
+      "Subject": "You asked a question on iHelp!",
+      "TextBody": "We'll be sure to email you back when your question has been answered.\n\nYou asked: " + question.text
+    });
     return res.json(201, question);
   });
 };

@@ -5,28 +5,27 @@
     <h1>iHelp</h1>
     <p class="lead">Get answers to all of your iPhone, iPad, iPod and Mac questions.</p>
     <div class="form-group">
+      <textarea style="min-height:150px;" class="form-control" placeholder="Your question..." ng-model="question.text"></textarea>
+    </div>
+    <div class="form-group">
       <input class="form-control" type="email" ng-model="question.email" placeholder="Your email...">
     </div>
     <div class="form-group">
-      <textarea class="form-control" placeholder="Your question..." ng-model="question.text"></textarea>
+      <button type="button" class="btn btn-lg btn-default" ng-click="submitQuestion(question)">Get iHelp!</button>
     </div>
-    <div class="form-group">
-      <button type="button" class="btn pull-right btn-default" ng-click="submitQuestion(question)">Ask it!</button>
-    </div>
-    <img src="assets/images/yeoman.png" alt="I'm Yeoman">
   </div>
 </header>
 
 <div class="container">
   <div class="row">
     <div class="col-lg-12">
-      <h1 class="page-header">Latest Questions:<input type="text" class="form-control" ng-model="search" style="max-width:400px; float:right;" placeholder="Find a question..."/></h1>
+      <h1 class="page-header">Latest Questions:<input type="text" class="hidden-xs form-control" ng-model="search" style="max-width:400px; float:right;" placeholder="Find a question..."/></h1>
       <div class="panel panel-default" ng-repeat="question in questions | filter:search | orderBy:'-submitted'">
         <div ng-if="questions.length === 0">
           <p class="lead text-center">No results found.</p>
         </div>
         <div class="panel-heading">
-          <h3 class="panel-title">{{question.text}}<i ng-if="isAdmin()" class="fa fa-remove pull-right" ng-click="question.$remove()"></i><p class="pull-right">Asked {{question.submitted | date:'medium'}}</p></h3>
+          <h3 class="panel-title">{{question.text}}</i><p class="pull-right hidden-xs">{{question.submitted | date:'short'}}</p></h3>
         </div>
         <div class="panel-body">
           <p class="lead">
@@ -36,23 +35,6 @@
       </div>
     </div>
   </div>
-  <!--<div class="row">-->
-    <!--<div class="col-lg-12">-->
-      <!--<h1 class="page-header">Stuff:</h1>-->
-      <!--<ul class="nav nav-tabs nav-stacked col-md-4 col-lg-4 col-sm-6" ng-repeat="thing in awesomeThings">-->
-        <!--<li><a href="#" tooltip="{{thing.info}}">{{thing.name}}<button type="button" class="close" ng-click="deleteThing(thing)">&times;</button></a></li>-->
-      <!--</ul>-->
-    <!--</div>-->
-  <!--</div>-->
-  <!--<form class="thing-form">-->
-    <!--<label>Look at these badass web sockets.</label>-->
-    <!--<p class="input-group">-->
-      <!--<input type="text" class="form-control" placeholder="Add a new thing here." ng-model="newThing">-->
-      <!--<span class="input-group-btn">-->
-        <!--<button type="submit" class="btn btn-primary" ng-click="addThing()">Add New</button>-->
-      <!--</span>-->
-    <!--</p>-->
-  <!--</form>-->
 </div>
 
 <footer class="footer">
